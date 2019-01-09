@@ -1,5 +1,8 @@
 let expect = require('expect');
-let {generateMessage, generateLocationMessage} = require('./message');
+let {
+    generateMessage,
+    generateLocationMessage
+} = require('./message');
 
 describe('generateMessage', () => {
     it('should generate correct message object', () => {
@@ -8,7 +11,10 @@ describe('generateMessage', () => {
         let message = generateMessage(from, text);
 
         expect(message.createdAt).toBeAn('number');
-        expect(message).toInclude({from, text});
+        expect(message).toInclude({
+            from,
+            text
+        });
     });
 });
 
@@ -21,6 +27,9 @@ describe('generateLocationMessage', () => {
         let message = generateLocationMessage(from, latitude, longitude);
 
         expect(message.createdAt).toBeAn('number');
-        expect(message).toInclude({from, url});
+        expect(message).toInclude({
+            from,
+            url
+        });
     });
 });
