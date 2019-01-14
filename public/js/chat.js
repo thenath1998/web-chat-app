@@ -1,5 +1,6 @@
 var socket = io();
 
+//utility for scroll
 function scrollToBottom() {
     var messages = jQuery('#messages');
     var newMessage = messages.children('li:last-child');
@@ -15,6 +16,8 @@ function scrollToBottom() {
         messages.scrollTop(scrollHeight);
     }
 }
+
+//connect
 socket.on('connect', function () {
     var params = jQuery.deparam(window.location.search);
 
@@ -32,6 +35,7 @@ socket.on('disconnect', function () {
     console.log('disconnected from server');
 });
 
+//update user list bar
 socket.on('updateUserList', function (users) {
     var ol = jQuery('<ol></ol>');
 
@@ -75,7 +79,6 @@ jQuery('#message-form').on('submit', function (e) {
 
     var messageTextBox = jQuery('[name=message]');
     socket.emit('createMessage', {
-        from: 'User',
         text: messageTextBox.val()
     }, function () {
         messageTextBox.val('');
